@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import "./Header.scss";
 import { PropContext } from "../App";
 import { Link } from "react-router-dom";
-import { AppBar, Button, Typography, Box } from "@material-ui/core";
+import { AppBar, Button, Box } from "@material-ui/core";
 
 function Header() {
   const { loggedIn, setLoggedIn, handleThemeChange } = useContext(PropContext);

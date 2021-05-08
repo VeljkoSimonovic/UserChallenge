@@ -1,8 +1,7 @@
 import React from "react";
 import "./Login.scss";
-import { Redirect } from "react-router-dom";
 import { PropContext } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Button, Box } from "@material-ui/core";
 function Login() {
@@ -23,14 +22,17 @@ function Login() {
     }
   };
 
-  const emailIsValid = () =>
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email
-    );
+  const emailIsValid = useCallback(
+    () =>
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+        email
+      ),
+    [email]
+  );
 
   useEffect(() => {
     emailIsValid(email) ? setValidEmail(true) : setValidEmail(false);
-  }, [email]);
+  }, [email, emailIsValid]);
   return (
     <Box
       display="flex"

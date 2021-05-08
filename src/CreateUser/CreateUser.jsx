@@ -1,6 +1,6 @@
 import React from "react";
 import "./CreateUser.scss";
-import { useState, useEffect, useContext } from "react";
+import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { Button, Box } from "@material-ui/core";

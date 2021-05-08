@@ -1,7 +1,7 @@
 import React from "react";
 import "./User.scss";
 import { PropContext } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Typography, Box } from "@material-ui/core";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Users.scss";
 import { PropContext } from "../App";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";
 import { Typography, Box } from "@material-ui/core";
