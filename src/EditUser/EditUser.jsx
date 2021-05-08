@@ -3,6 +3,8 @@ import "./EditUser.scss";
 import { PropContext } from "../App";
 import { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { Button, Box } from "@material-ui/core";
 
 function EditUser(props) {
   const [name, setName] = useState("");
@@ -36,23 +38,39 @@ function EditUser(props) {
   return edited ? (
     <Redirect to="/users" />
   ) : (
-    <div>
-      <input
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      style={{ marginTop: "10px" }}
+    >
+      <TextField
+        style={{ margin: "2px" }}
+        variant="outlined"
+        color="secondary"
         value={name}
         onChange={(e) => setName(e.target.value)}
         type="text"
         required
       />
-      <input
+      <TextField
+        style={{ margin: "2px" }}
+        variant="outlined"
+        color="secondary"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
-        name="email"
-        id="email1"
         required
       />
-      <button onClick={() => editUser()}>Submit</button>
-    </div>
+      <Button
+        style={{ margin: "2px" }}
+        variant="contained"
+        color="secondary"
+        onClick={() => editUser()}
+      >
+        Submit
+      </Button>
+    </Box>
   );
 }
 

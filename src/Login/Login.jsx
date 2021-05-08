@@ -3,6 +3,8 @@ import "./Login.scss";
 import { Redirect } from "react-router-dom";
 import { PropContext } from "../App";
 import { useState, useEffect, useContext } from "react";
+import TextField from "@material-ui/core/TextField";
+import { Button, Box } from "@material-ui/core";
 function Login() {
   const [savedEmail, setSavedEmail] = useState(localStorage.getItem("email"));
   const [email, setEmail] = useState("");
@@ -30,19 +32,30 @@ function Login() {
     emailIsValid(email) ? setValidEmail(true) : setValidEmail(false);
   }, [email]);
   return (
-    <div>
-      <input
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      style={{ margin: "20px" }}
+    >
+      <TextField
+        variant="outlined"
+        color="secondary"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
-        name="email"
-        id="email"
         required
       />
-      <button disabled={!validEmail} onClick={() => handleClick()}>
+      <Button
+        disabled={!validEmail}
+        onClick={() => handleClick()}
+        variant="contained"
+        color="secondary"
+        style={{ margin: "20px" }}
+      >
         Log in
-      </button>
-    </div>
+      </Button>
+    </Box>
   );
 }
 

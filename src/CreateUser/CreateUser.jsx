@@ -2,6 +2,8 @@ import React from "react";
 import "./CreateUser.scss";
 import { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
+import TextField from "@material-ui/core/TextField";
+import { Button, Box } from "@material-ui/core";
 
 function CreateUser() {
   const [name, setName] = useState("");
@@ -33,14 +35,25 @@ function CreateUser() {
   return created ? (
     <Redirect to="/users" />
   ) : (
-    <div>
-      <input
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      style={{ marginTop: "10px" }}
+    >
+      <TextField
+        style={{ margin: "2px" }}
+        variant="outlined"
+        color="secondary"
         value={name}
         onChange={(e) => setName(e.target.value)}
         type="text"
         required
       />
-      <input
+      <TextField
+        style={{ margin: "2px" }}
+        variant="outlined"
+        color="secondary"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         type="email"
@@ -48,8 +61,15 @@ function CreateUser() {
         id="email1"
         required
       />
-      <button onClick={() => createUser()}>Submit</button>
-    </div>
+      <Button
+        style={{ margin: "2px" }}
+        variant="contained"
+        color="secondary"
+        onClick={() => createUser()}
+      >
+        Submit
+      </Button>
+    </Box>
   );
 }
 

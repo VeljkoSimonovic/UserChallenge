@@ -3,6 +3,7 @@ import "./User.scss";
 import { PropContext } from "../App";
 import { useState, useEffect, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
+import { Button, Typography, Box } from "@material-ui/core";
 
 function User(props) {
   const [deleted, setDeleted] = useState(false);
@@ -25,27 +26,60 @@ function User(props) {
     deleted ? (
       <Redirect to="/users" />
     ) : (
-      <div>
-        <div>
-          <Link to="/createUser">
-            <button>Create</button>
+      <Box>
+        <Box
+          style={{ margin: "10px auto", width: "100%" }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <Link to="/createUser" style={{ textDecoration: "none" }}>
+            <Button
+              style={{ margin: "2px" }}
+              variant="contained"
+              color="secondary"
+            >
+              Create
+            </Button>
           </Link>
-          <Link to={{ pathname: `/user/${user.id}/edit` }}>
-            <button>Edit</button>
+          <Link
+            to={{ pathname: `/user/${user.id}/edit` }}
+            style={{ textDecoration: "none" }}
+          >
+            <Button
+              style={{ margin: "2px" }}
+              variant="contained"
+              color="secondary"
+            >
+              Edit
+            </Button>
           </Link>
-
-          <button onClick={() => deleteUser()}>Delete</button>
-        </div>
-        <div>
-          <p>Id: {user.id}</p>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Phone: {user.phone}</p>
-          <p>Website: {user.website}</p>
-          <p>City: {user.address.city}</p>
-          <p>Company: {user.company.name}</p>
-        </div>
-      </div>
+          <Button
+            style={{ margin: "2px" }}
+            variant="contained"
+            color="secondary"
+            onClick={() => deleteUser()}
+          >
+            Delete
+          </Button>
+        </Box>
+        <Box
+          style={{ margin: "20px auto" }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          border={1}
+          borderColor="secondary.main"
+        >
+          <Typography variant="h6">Id: {user.id}</Typography>
+          <Typography variant="h6">Name: {user.name} </Typography>
+          <Typography variant="h6">Email: {user.email} </Typography>
+          <Typography variant="h6">Phone: {user.phone} </Typography>
+          <Typography variant="h6">Website: {user.website} </Typography>
+          <Typography variant="h6">City: {user.address.city} </Typography>
+          <Typography variant="h6">Company: {user.company.name} </Typography>
+        </Box>
+      </Box>
     )
   ) : null;
 }
