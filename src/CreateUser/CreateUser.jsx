@@ -1,5 +1,4 @@
 import React from "react";
-import "./CreateUser.scss";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";

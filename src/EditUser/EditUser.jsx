@@ -1,5 +1,4 @@
 import React from "react";
-import "./EditUser.scss";
 import { PropContext } from "../App";
 import { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";

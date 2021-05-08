@@ -1,5 +1,4 @@
 import React from "react";
-import "./Users.scss";
 import { PropContext } from "../App";
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";

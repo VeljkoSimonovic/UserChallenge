@@ -1,5 +1,4 @@
 import React from "react";
-import "./Login.scss";
 import { PropContext } from "../App";
 import { useState, useEffect, useContext, useCallback } from "react";
 import TextField from "@material-ui/core/TextField";

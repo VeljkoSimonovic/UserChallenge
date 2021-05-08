@@ -1,5 +1,4 @@
 import React from "react";
-import "./User.scss";
 import { PropContext } from "../App";
 import { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";

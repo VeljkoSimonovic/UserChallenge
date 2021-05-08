@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import "./Header.scss";
 import { PropContext } from "../App";
 import { Link } from "react-router-dom";
 import { AppBar, Button, Box } from "@material-ui/core";
