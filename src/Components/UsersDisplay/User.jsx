@@ -1,12 +1,12 @@
 import React from "react";
-import { PropContext } from "../App";
+import { PropContext } from "../../App";
 import { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Typography, Box } from "@material-ui/core";
 
 function User(props) {
   const [deleted, setDeleted] = useState(false);
-  const { data } = useContext(PropContext);
+  const { data, setEditOrCreate } = useContext(PropContext);
   const user = data.find((e) => props.match.params.id == e.id);
 
   const deleteUser = () => {
@@ -37,6 +37,7 @@ function User(props) {
               style={{ margin: "2px" }}
               variant="contained"
               color="secondary"
+              onClick={() => setEditOrCreate(false)}
             >
               Create
             </Button>
@@ -49,6 +50,7 @@ function User(props) {
               style={{ margin: "2px" }}
               variant="contained"
               color="secondary"
+              onClick={() => setEditOrCreate(true)}
             >
               Edit
             </Button>

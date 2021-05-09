@@ -1,5 +1,5 @@
 import React from "react";
-import { PropContext } from "../App";
+import { PropContext } from "../../App";
 import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { Link } from "react-router-dom";

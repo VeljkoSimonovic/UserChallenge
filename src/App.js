@@ -2,12 +2,11 @@ import "./App.scss";
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Header from "./Header/Header";
-import Users from "./Users/Users";
-import User from "./User/User";
-import Login from "./Login/Login";
-import CreateUser from "./CreateUser/CreateUser";
-import EditUser from "./EditUser/EditUser";
+import Header from "./Components/MiscComponents/Header";
+import Users from "./Components/UsersDisplay/Users";
+import User from "./Components/UsersDisplay/User";
+import Login from "./Components/MiscComponents/Login";
+import EditOrCreateUser from "./Components/CreateEditUser/EditOrCreateUser";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import {
   orange,
@@ -18,6 +17,7 @@ import {
 export const PropContext = React.createContext();
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("logged"));
+  const [editOrCreate, setEditOrCreate] = useState(true);
   const [data, setData] = useState([
     {
       id: "",
@@ -59,7 +59,14 @@ function App() {
   return (
     <>
       <PropContext.Provider
-        value={{ loggedIn, setLoggedIn, data, handleThemeChange }}
+        value={{
+          loggedIn,
+          setLoggedIn,
+          data,
+          handleThemeChange,
+          editOrCreate,
+          setEditOrCreate,
+        }}
       >
         <ThemeProvider theme={darkTheme}>
           <Header />
@@ -95,8 +102,12 @@ function App() {
             <Route
               exact
               path="/createUser"
-              render={() =>
-                loggedIn ? <CreateUser /> : <Redirect to="/login" />
+              render={(routeInfo) =>
+                loggedIn ? (
+                  <EditOrCreateUser {...routeInfo} />
+                ) : (
+                  <Redirect to="/login" />
+                )
               }
             />
             <Route
@@ -104,7 +115,7 @@ function App() {
               path="/user/:id/edit"
               render={(routeInfo) =>
                 loggedIn ? (
-                  <EditUser {...routeInfo} />
+                  <EditOrCreateUser {...routeInfo} />
                 ) : (
                   <Redirect to="/login" />
                 )

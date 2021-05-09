@@ -1,8 +1,8 @@
 import React from "react";
-import { PropContext } from "../App";
+import { PropContext } from "../../App";
 import { useState, useEffect, useContext, useCallback } from "react";
 import TextField from "@material-ui/core/TextField";
-import { Button, Box } from "@material-ui/core";
+import { Typography, Button, Box } from "@material-ui/core";
 function Login() {
   const [savedEmail, setSavedEmail] = useState(localStorage.getItem("email"));
   const [email, setEmail] = useState("");
@@ -39,23 +39,27 @@ function Login() {
       alignItems="center"
       style={{ margin: "20px" }}
     >
-      <TextField
-        variant="outlined"
-        color="secondary"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        type="email"
-        required
-      />
-      <Button
-        disabled={!validEmail}
-        onClick={() => handleClick()}
-        variant="contained"
-        color="secondary"
-        style={{ margin: "20px" }}
-      >
-        Log in
-      </Button>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        <Typography variant="h6">Email</Typography>
+        <TextField
+          variant="outlined"
+          color="secondary"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          required
+        />
+
+        <Button
+          disabled={!validEmail}
+          onClick={() => handleClick()}
+          variant="contained"
+          color="secondary"
+          style={{ margin: "20px" }}
+        >
+          Log in
+        </Button>
+      </Box>
     </Box>
   );
 }
