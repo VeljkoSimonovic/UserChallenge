@@ -1,8 +1,9 @@
 import React from "react";
 import { PropContext } from "../../App";
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import { Typography, Button, Box } from "@material-ui/core";
+import { emailIsValid } from "../../Utils/validation";
 function Login() {
   const [savedEmail, setSavedEmail] = useState(localStorage.getItem("email"));
   const [email, setEmail] = useState("");
@@ -21,17 +22,9 @@ function Login() {
     }
   };
 
-  const emailIsValid = useCallback(
-    () =>
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-        email
-      ),
-    [email]
-  );
-
   useEffect(() => {
     emailIsValid(email) ? setValidEmail(true) : setValidEmail(false);
-  }, [email, emailIsValid]);
+  }, [email]);
   return (
     <Box
       display="flex"

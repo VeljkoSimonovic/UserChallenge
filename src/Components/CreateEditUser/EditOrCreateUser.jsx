@@ -4,24 +4,43 @@ import { useState, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import TextField from "@material-ui/core/TextField";
 import { Typography, Button, Box } from "@material-ui/core";
+import { emailIsValid, phoneIsValid } from "../../Utils/validation";
+
+// {
+//   "id": 1,
+//   "name": "Leanne Graham",
+//   "username": "Bret",
+//   "email": "Sincere@april.biz",
+//   "address": {
+//     "street": "Kulas Light",
+//     "suite": "Apt. 556",
+//     "city": "Gwenborough",
+//     "zipcode": "92998-3874",
+//     "geo": {
+//       "lat": "-37.3159",
+//       "lng": "81.1496"
+//     }
+//   },
+//   "phone": "1-770-736-8031 x56442",
+//   "website": "hildegard.org",
+//   "company": {
+//     "name": "Romaguera-Crona",
+//     "catchPhrase": "Multi-layered client-server neural-net",
+//     "bs": "harness real-time e-markets"
+//   }
 
 function EditOrCreateUser(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [userName, setUserName] = useState("");
+
   const [redirect, setRedirect] = useState(false);
   const { data, editOrCreate } = useContext(PropContext);
   const user = data.find((e) => props.match.params.id == e.id);
-  const emailIsValid = () =>
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      email
-    );
-  const phoneIsValid = () =>
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(phone);
-  console.log(user);
+
   const editUser = () => {
-    if (emailIsValid() && phoneIsValid() && name && userName) {
+    if (emailIsValid(email) && phoneIsValid(phone) && name && userName) {
       fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
         method: "PATCH",
         body: JSON.stringify({
@@ -41,7 +60,7 @@ function EditOrCreateUser(props) {
   };
 
   const createUser = () => {
-    if (emailIsValid() && phoneIsValid() && name && userName) {
+    if (emailIsValid(email) && phoneIsValid(phone) && name && userName) {
       fetch("https://jsonplaceholder.typicode.com/users", {
         method: "POST",
         body: JSON.stringify({
