@@ -36,9 +36,9 @@ function EditOrCreateUser(props) {
   const [userName, setUserName] = useState("");
 
   const [redirect, setRedirect] = useState(false);
-  const { data, editOrCreate } = useContext(PropContext);
+  const { data } = useContext(PropContext);
   const user = data.find((e) => props.match.params.id == e.id);
-
+  console.log(props.match.params.id);
   const editUser = () => {
     if (emailIsValid(email) && phoneIsValid(phone) && name && userName) {
       fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
@@ -137,7 +137,7 @@ function EditOrCreateUser(props) {
         />
       </Box>
 
-      {editOrCreate ? (
+      {props.match.params.id ? (
         <Button
           style={{ margin: "2px" }}
           variant="contained"

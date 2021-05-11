@@ -17,7 +17,6 @@ import {
 export const PropContext = React.createContext();
 function App() {
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem("logged"));
-  const [editOrCreate, setEditOrCreate] = useState(true);
   const [data, setData] = useState([
     {
       id: "",
@@ -64,8 +63,6 @@ function App() {
           setLoggedIn,
           data,
           handleThemeChange,
-          editOrCreate,
-          setEditOrCreate,
         }}
       >
         <ThemeProvider theme={darkTheme}>
